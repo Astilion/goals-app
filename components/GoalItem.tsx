@@ -4,10 +4,10 @@ type GoalItemProps = {
     text: string;
 };
 
-function GoalItem(props: GoalItemProps) {
+function GoalItem({text}: GoalItemProps) {
     return (
         <View style={styles.goalItem}>
-            <Text style={styles.goalText} >{props.text}</Text>
+            <Text style={styles.goalText} >{text}</Text>
         </View>
     )
 };
