@@ -8,7 +8,7 @@ type GoalItemProps = {
 
 function GoalItem({text, onDeleteItem, id}: GoalItemProps) {
     return (
-        <Pressable onPress={onDeleteItem.bind(this, id)}>
+        <Pressable onPress={() => onDeleteItem(id)}>
         <View style={styles.goalItem}>
             <Text style={styles.goalText} >{text}</Text>
         </View></Pressable>
