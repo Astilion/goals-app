@@ -6,38 +6,42 @@ import GoalInput from './components/GoalInput';
 type Goal = {
   text: string;
   id: string;
-}
+};
 
 export default function App() {
-  const [courseGoals, setCourseGoals] = useState<Goal[]>([])
+  const [courseGoals, setCourseGoals] = useState<Goal[]>([]);
 
   const addGoalHandler = (enteredGoalText: string) => {
-    setCourseGoals(currentCourseGoals => [...currentCourseGoals, { text: enteredGoalText, id: Math.random().toString() }]);
-  }
+    setCourseGoals((currentCourseGoals) => [
+      ...currentCourseGoals,
+      { text: enteredGoalText, id: Math.random().toString() },
+    ]);
+  };
   const deleteGoalHandler = (id: string) => {
-    setCourseGoals(currentCourseGoals => {
-      return currentCourseGoals.filter((goal) => goal.id !== id)
-    })
-  }
+    setCourseGoals((currentCourseGoals) => {
+      return currentCourseGoals.filter((goal) => goal.id !== id);
+    });
+  };
   return (
     <View style={styles.appContainer}>
-      <GoalInput
-        onAddGoal={addGoalHandler} />
+      <GoalInput onAddGoal={addGoalHandler} />
       <View style={styles.goalsContainer}>
         <FlatList
-          data={courseGoals} renderItem={
-            itemData => {
-              return (
-                <GoalItem
-                  text={itemData.item.text}
-                  id={itemData.item.id}
-                  onDeleteItem={deleteGoalHandler} />)
-            }}
+          data={courseGoals}
+          renderItem={(itemData) => {
+            return (
+              <GoalItem
+                text={itemData.item.text}
+                id={itemData.item.id}
+                onDeleteItem={deleteGoalHandler}
+              />
+            );
+          }}
           keyExtractor={(item, index) => {
             return item.id;
           }}
-          alwaysBounceVertical={false} />
-
+          alwaysBounceVertical={false}
+        />
       </View>
     </View>
   );
@@ -52,5 +56,4 @@ const styles = StyleSheet.create({
   goalsContainer: {
     flex: 5,
   },
-
 });
