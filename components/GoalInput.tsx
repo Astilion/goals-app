@@ -3,9 +3,10 @@ import { useState } from 'react';
 
 type GoalInputProps = {
   onAddGoal: (enteredGoalText: string) => void;
+  onCancel: () => void;
   visible: boolean;
 };
-function GoalInput({ onAddGoal, visible }: GoalInputProps) {
+function GoalInput({ onAddGoal, visible, onCancel }: GoalInputProps) {
   const [enteredGoalText, setEnteredGoalText] = useState<string>('');
   const goalInputHandler = (enteredText: string) => {
     setEnteredGoalText(enteredText);
@@ -29,7 +30,7 @@ function GoalInput({ onAddGoal, visible }: GoalInputProps) {
             <Button title='Add Goal' onPress={addGoalHandler} />
           </View>
           <View style={styles.button}>
-            <Button title='Cancel' />
+            <Button title='Cancel' onPress={onCancel} />
           </View>
         </View>
       </View>
